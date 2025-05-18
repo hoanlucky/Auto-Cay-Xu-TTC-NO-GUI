@@ -114,7 +114,8 @@ def set_fb_dtsg(cookie_: str):
     with httpx.Client(headers=headers) as client:
         response = client.get("https://www.facebook.com", cookies=cookies, follow_redirects=True, timeout=30)
         try:
-            fb_dtsg_fb = response.text.split('"fb_dtsg","value":"')[1].split('"},{')[0]
+            # fb_dtsg_fb = response.text.split('"fb_dtsg","value":"')[1].split('"},{')[0]
+            fb_dtsg_fb = response_body.split('{"token":"')[1].split('"},')[0]
         except:
             print("❌ Cookie Facebook không hợp lệ!")
             exit()
